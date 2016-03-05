@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/relative"
+    tools:context="com.example.aspire.election2016.CandidatesView"
+    tools:deviceIds="wear_round">
+
+    <android.support.wearable.view.GridViewPager
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</RelativeLayout>
+
+
+
+<!--<android.support.wearable.view.WatchViewStub xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:id="@+id/watch_view_stub"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--app:rectLayout="@layout/rect_activity_candidates_view"-->
+    <!--app:roundLayout="@layout/round_activity_candidates_view"-->
+    <!--tools:context="com.example.aspire.election2016.CandidatesView"-->
+    <!--tools:deviceIds="wear">-->
+
+
+<!--</android.support.wearable.view.WatchViewStub>-->

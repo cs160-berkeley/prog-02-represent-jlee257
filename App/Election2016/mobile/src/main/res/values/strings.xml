@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Election 2016</string>
+    <string name="action_settings">Settings</string>
+    <string name="button_text_set_location_now">Set location</string>
+    <string name="title_activity_locations">Locations</string>
+    <string name="toolbar_text_locations">Toolbar Title</string>
+    <string name="toolbar_text_election2016">Toolbar Title</string>
+    <string name="text_enterYourZipcode">Or…\nEnter your zipcode</string>
+    <string name="title_activity_candidates">Candidates</string>
+
+    <string name="text_candidate1Name">Ronald Johnson</string>
+    <string name="text_candidate1Party">Republican</string>
+    <string name="text_candidate1Contacts">r.johnson@rjohnson.com\nwww.rjohnson.com</string>
+    <string name="text_candidate1Detail">
+        Term ends on:\n
+        2016/02/13\n
+        \n
+        Committee Assignments\n
+        Committee on Foreign Relations\n
+        Committee on the Budget\n
+        Committee on Homeland Security and Governmental Affairs (Chairman)\n
+        \n
+        Sponsored Bills:\n
+        S. 2517: Combat Terrorist Use of Social Media Act of 2016\n
+    </string>
+
+    <string name="text_twitterTime">8:43 AM - 17 Feb 2016</string>
+    <string name="text_twitterContents">I will do my best!</string>
+    <string name="button_expand">EXPAND</string>
+</resources>
