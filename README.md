@@ -1,10 +1,10 @@
 # PROG 02: Represent!
 
-Framework implementation of PROG02
+Briefly describe your app here.
 
 ## Authors
 
-Ho Jeff Lee ([jlee257@berkeley.edu](mailto:jlee257@berkeley.edu))
+FirstName LastName ([your_email@berkeley.edu](mailto:your_email@berkeley.edu))
 
 ## Demo Video
 
@@ -14,3 +14,7 @@ See [your demo video title here] (https://link_to_your_video)
 
 <img src="screenshots/main2.png" height="400" alt="Screenshot"/>
 
+## Acknowledgments
+
+* Hat tip to anyone who's code was used
+* Any other support
