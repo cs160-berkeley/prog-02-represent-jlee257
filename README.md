@@ -12,7 +12,7 @@ See [your demo video title here] (https://link_to_your_video)
 
 ## Screenshots
 
-<img src="screenshots/main2.png" height="400" alt="Screenshot"/>
+<img src="screenshots/main2.jpg" height="400" alt="Screenshot"/>
 
 ## Acknowledgments
 
