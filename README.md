@@ -1,20 +1,15 @@
 # PROG 02: Represent!
 
-Briefly describe your app here.
+Framework implementation of PROG02
 
 ## Authors
 
-FirstName LastName ([your_email@berkeley.edu](mailto:your_email@berkeley.edu))
+Ho Jeff Lee ([jlee257@berkeley.edu](mailto:jlee257@berkeley.edu))
 
 ## Demo Video
 
-See [your demo video title here] (https://link_to_your_video)
+See [PROG02-B election] (https://youtu.be/A8c9bfCzLxU)
 
 ## Screenshots
 
 <img src="screenshots/main2.jpg" height="400" alt="Screenshot"/>
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Any other support
