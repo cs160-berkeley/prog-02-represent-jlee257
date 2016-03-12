@@ -27,4 +27,8 @@
     <string name="text_twitterTime">8:43 AM - 17 Feb 2016</string>
     <string name="text_twitterContents">I will do my best!</string>
     <string name="button_expand">EXPAND</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

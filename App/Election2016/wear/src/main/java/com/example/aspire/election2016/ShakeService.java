@@ -95,11 +95,10 @@ public class ShakeService extends WearableListenerService implements SensorEvent
 //                    Toast.makeText(context, "NEW RANDOM AREA " + Integer.toString(randint), Toast.LENGTH_LONG).show();
 
                     Log.d("T", "locsetto:" + Integer.toString(newzip));
-                    Intent intent = new Intent(this, Menu.class);
-                    intent.putExtra("ZIP", newzip);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                    Toast.makeText(context, "NEW RANDOM AREA " + Integer.toString(newzip), Toast.LENGTH_LONG).show();
+
+                    Intent sendIntent = new Intent(getBaseContext(), WatchToPhoneService.class);
+                    sendIntent.putExtra("RANDOMLOCATION", "RANDOMLOCATION");
+                    startService(sendIntent);
                 }
                 last_x = x;
                 last_y = y;

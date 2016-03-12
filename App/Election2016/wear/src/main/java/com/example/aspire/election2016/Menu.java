@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Menu extends Activity {
 
@@ -22,9 +23,12 @@ public class Menu extends Activity {
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
+        
         if (extras != null) {
-            int randint = extras.getInt("ZIP");
-            ((Election2016) this.getApplication()).setZip(randint);
+            String location_info = extras.getString("LOCATIONINFO");
+            if (!((Election2016) this.getApplication()).setLocationInfo(location_info)) {
+                Toast.makeText(this, "LOCATION CHANGE FAILED", Toast.LENGTH_LONG).show();
+            };
         }
 
 

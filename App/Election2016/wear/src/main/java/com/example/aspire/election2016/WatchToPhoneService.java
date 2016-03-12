@@ -48,18 +48,45 @@ public class WatchToPhoneService extends Service {
         // Which cat do we want to feed? Grab this info from INTENT
         // which was passed over when we called startService
         Bundle extras = intent.getExtras();
+
+        if (extras.getString("REPSELECT") != null) {
+            final String data = extras.getString("REPSELECT");
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    //first, connect to the apiclient
+                    mApiClient.connect();
+                    //now that you're connected, send a massage with the cat name
+                    sendMessage("/REPSELECT", data);
+                    Log.d("DEBIGTAG", "sending /REPSELECT:" + data);
+                }
+            }).start();
+
+        } else if (extras.getString("RANDOMLOCATION") != null) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    //first, connect to the apiclient
+                    mApiClient.connect();
+                    //now that you're connected, send a massage with the cat name
+                    sendMessage("/RANDOMLOCATION", "RANDOMLOCATION");
+                }
+            }).start();
+        }
+
         final String candidateName = extras.getString("CANDIDATE");
 
         // Send the message with the cat name
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //first, connect to the apiclient
-                mApiClient.connect();
-                //now that you're connected, send a massage with the cat name
-                sendMessage("/" + candidateName, candidateName);
-            }
-        }).start();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                //first, connect to the apiclient
+//                mApiClient.connect();
+//                //now that you're connected, send a massage with the cat name
+//                sendMessage("/" + path, data);
+//            }
+//        }).start();
 
         return START_STICKY;
     }

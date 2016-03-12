@@ -2,5 +2,7 @@
 <resources>
     <color name="republican">#FF7A7A</color>
     <color name="democratic">#7AA9FF</color>
+    <color name="independent">#666666</color>
+    <color name="independent2">#AAAAAA</color>
 
 </resources>

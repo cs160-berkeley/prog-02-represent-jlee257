@@ -9,71 +9,40 @@
     tools:deviceIds="wear_round">
 
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="90dp"
+        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:background="@color/republican">
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="650"
             android:background="@color/democratic"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="80dp">
-
-
+            android:id="@+id/oba_bar">
         </RelativeLayout>
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="40dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Obama"
-                android:textColor="#000000"
-                android:id="@+id/textView5" />
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="25"
+            android:background="@color/independent2"
+            android:id="@+id/gray_bar">
+        </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="67.5%"
-                android:textColor="#000000"
-                android:id="@+id/textView6" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="40dp"
-            android:gravity="right">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="325"
+            android:background="@color/republican"
+            android:id="@+id/rom_bar">
+        </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Romney"
-                android:textColor="#000000"
-                android:id="@+id/textView7" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="32.5%"
-                android:textColor="#000000"
-                android:id="@+id/textView8" />
-
-        </LinearLayout>
-
-    </RelativeLayout>
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -88,9 +57,60 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Orange County, CA"
-        android:id="@+id/textView10"
+        android:id="@+id/loctext"
         android:layout_above="@+id/textView9"
         android:layout_alignStart="@+id/textView9" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginBottom="40dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Obama"
+            android:textColor="#000000"
+            android:id="@+id/textView5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="65.0%"
+            android:textColor="#000000"
+            android:id="@+id/oba_num" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="40dp"
+        android:gravity="right"
+        android:id="@+id/linearLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Romney"
+            android:textColor="#000000"
+            android:id="@+id/textView7" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="32.5%"
+            android:textColor="#000000"
+            android:id="@+id/rom_num" />
+
+    </LinearLayout>
 
 </RelativeLayout>
 

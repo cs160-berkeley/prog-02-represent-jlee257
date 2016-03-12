@@ -33,18 +33,14 @@ public class CandidatesView extends Activity {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
+        String[] locInfo = ((Election2016) this.getApplication()).getLocInfo();
+
         if (extras != null) {
-            String candidateString = extras.getString("CANDIDATE");
-            if (candidateString.equals("A")) {
-                pager.setAdapter(new MyGridViewPagerAdapter(this, 0));
-            } else if (candidateString.equals("B")) {
-                pager.setAdapter(new MyGridViewPagerAdapter(this, 1));
-            } else {
-                pager.setAdapter(new MyGridViewPagerAdapter(this, 2));
-            }
+            int repNum = extras.getInt("REPSELECT");
+            pager.setAdapter(new MyGridViewPagerAdapter(this, repNum, locInfo));
 
         } else {
-            pager.setAdapter(new MyGridViewPagerAdapter(this, 2));
+            pager.setAdapter(new MyGridViewPagerAdapter(this, 0, locInfo));
         }
     }
 
@@ -52,10 +48,14 @@ public class CandidatesView extends Activity {
     private class MyGridViewPagerAdapter extends GridPagerAdapter {
         final Context mContext;
         final int row0;
+        final int row_num;
+        final String[] locInfo0;
 
-        public MyGridViewPagerAdapter(final Context context, int row) {
+        public MyGridViewPagerAdapter(final Context context, int row, String[] locInfo) {
             mContext = context;
             row0 = row;
+            locInfo0 = locInfo;
+            row_num = (locInfo0.length - 2) / 2;
         }
 
         @Override
@@ -65,42 +65,39 @@ public class CandidatesView extends Activity {
 
         @Override
         public int getRowCount() {
-            return 3;
+            return row_num;
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, final int row, int col) {
             final View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.grid_view_pager_item, container, false);
-            final TextView textView = (TextView) view.findViewById(R.id.textView4);
+            final TextView cand_name = (TextView) view.findViewById(R.id.cand_name);
+            final TextView cand_party = (TextView) view.findViewById(R.id.cand_party);
             final Button button = (Button) view.findViewById(R.id.sendbutton);
 
-            if ((row0+row)%3==0) {
-                textView.setText("Democratic");
+            final int index = (row0 + row) % row_num;
+            String party_name = locInfo0[index * 2 + 4];
+            cand_name.setText(locInfo0[index * 2 + 3]);
+            cand_party.setText(party_name);
+
+            if (party_name.equals("Democratic")) {
                 button.getBackground().setColorFilter(0xFF0000FF, PorterDuff.Mode.MULTIPLY);
-            } else if ((row0+row)%3==1) {
-                textView.setText("Republican");
+            } else if (party_name.equals("Republican")) {
                 button.getBackground().setColorFilter(0xFFFF0000, PorterDuff.Mode.MULTIPLY);
             } else {
-                textView.setText("Independent");
                 button.getBackground().setColorFilter(0xFF888888, PorterDuff.Mode.MULTIPLY);
             }
+
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.d("T", "Watch button is clicked");
+                    Log.d("DEBUGTAG", "Watch button " + String.valueOf(index) + "is clicked");
                     Intent sendIntent = new Intent(getBaseContext(), WatchToPhoneService.class);
-
-                    if ((row0+row)%3==0) {
-                        sendIntent.putExtra("CANDIDATE", "CandA");
-                    } else if ((row0+row)%3==1) {
-                        sendIntent.putExtra("CANDIDATE", "CandB");
-                    } else {
-                        sendIntent.putExtra("CANDIDATE", "CandC");
-                    }
+                    sendIntent.putExtra("REPSELECT", String.valueOf(index));
                     startService(sendIntent);
                 }
             });
-            Log.d("T", "Watch button is set");
+            Log.d("DEBUGTAG", "Watch button is set");
             container.addView(view);
             return view;
         }

@@ -9,59 +9,94 @@ import com.google.android.gms.wearable.WearableListenerService;
 import java.nio.charset.StandardCharsets;
 
 
+
+
+//adb -s 192.168.56.101:5555 -d forward tcp:5601 tcp:5601
+
+
+
+
 public class WatchListenerService extends WearableListenerService {
-    // In PhoneToWatchService, we passed in a path, either "/FRED" or "/LEXY"
-    // These paths serve to differentiate different phone-to-watch messages
-//    private static final String FRED_FEED = "/Fred";
-//    private static final String LEXY_FEED = "/Lexy";
+
 
     private static final String CAND_A = "/CandA";
-    private static final String CAND_B = "/CandB";
-    private static final String CAND_C = "/CandC";
 
 
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
-        Log.d("T", "in WatchListenerService, got: " + messageEvent.getPath());
-        //use the 'path' field in sendmessage to differentiate use cases
-        //(here, fred vs lexy)
+        Log.d("DEBUGTAG", "in WatchListenerService, got: " + messageEvent.getPath());
 
-        if( messageEvent.getPath().equalsIgnoreCase( CAND_A ) ) {
-            String value = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+
+        if (messageEvent.getPath().equals("/rep_select")) {
+
+            int value = Integer.parseInt(new String(messageEvent.getData(), StandardCharsets.UTF_8));
+
             Intent intent = new Intent(this, CandidatesView.class );
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            //you need to add this flag since you're starting a new activity from a service
-            intent.putExtra("CANDIDATE", "A");
-            Log.d("T", "about to start watch CandidatesView with CANDIDATE: A");
+            intent.putExtra("REPSELECT", value);
+            Log.d("T", "about to start watch CandidatesView with CANDIDATE: " + value);
+
             startActivity(intent);
-        } else if (messageEvent.getPath().equalsIgnoreCase(CAND_B)) {
+
+        } else if (messageEvent.getPath().equals("/LOCATIONINFO")) {
+
+
+
             String value = new String(messageEvent.getData(), StandardCharsets.UTF_8);
-            Intent intent = new Intent(this, CandidatesView.class );
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            //you need to add this flag since you're starting a new activity from a service
-            intent.putExtra("CANDIDATE", "B");
-            Log.d("T", "about to start watch CandidatesView with CANDIDATE: B");
-            startActivity(intent);
-        } else if (messageEvent.getPath().equalsIgnoreCase( CAND_C )) {
-            String value = new String(messageEvent.getData(), StandardCharsets.UTF_8);
-            Intent intent = new Intent(this, CandidatesView.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            //you need to add this flag since you're starting a new activity from a service
-            intent.putExtra("CANDIDATE", "C");
-            Log.d("T", "about to start watch CandidatesView with CANDIDATE: C");
-            startActivity(intent);
-        } else if (messageEvent.getPath().startsWith("/zip")) {
-            int newzip = Integer.parseInt(messageEvent.getPath().substring(4));
-            Log.d("T", "about to set location:" + messageEvent.getPath().substring(4));
-            ((Election2016) this.getApplication()).setZip(newzip);
-            Log.d("T", "locsetto:" + Integer.toString(newzip));
+            Log.d("DEBUGTAG", "data=" + value);
+
             Intent intent = new Intent(this, Menu.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("LOCATIONINFO", value);
             startActivity(intent);
-            Toast.makeText(this, "NEW AREA " + Integer.toString(newzip), Toast.LENGTH_LONG).show();
+
         } else {
-            super.onMessageReceived( messageEvent );
+            super.onMessageReceived(messageEvent);
+
         }
 
+
+
+
+
+
+//        if( messageEvent.getPath().equalsIgnoreCase( CAND_A ) ) {
+//            String value = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+//            Intent intent = new Intent(this, CandidatesView.class );
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            //you need to add this flag since you're starting a new activity from a service
+//            intent.putExtra("CANDIDATE", "A");
+//            Log.d("T", "about to start watch CandidatesView with CANDIDATE: A");
+//            startActivity(intent);
+//        } else if (messageEvent.getPath().equalsIgnoreCase(CAND_B)) {
+//            String value = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+//            Intent intent = new Intent(this, CandidatesView.class);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            //you need to add this flag since you're starting a new activity from a service
+//            intent.putExtra("CANDIDATE", "B");
+//            Log.d("T", "about to start watch CandidatesView with CANDIDATE: B");
+//            startActivity(intent);
+//        } else if (messageEvent.getPath().equalsIgnoreCase( CAND_C )) {
+//            String value = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+//            Intent intent = new Intent(this, CandidatesView.class);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            //you need to add this flag since you're starting a new activity from a service
+//            intent.putExtra("CANDIDATE", "C");
+//            Log.d("T", "about to start watch CandidatesView with CANDIDATE: C");
+//            startActivity(intent);
+//        } else if (messageEvent.getPath().startsWith("/zip")) {
+//            int newzip = Integer.parseInt(messageEvent.getPath().substring(4));
+//            Log.d("T", "about to set location:" + messageEvent.getPath().substring(4));
+//            ((Election2016) this.getApplication()).setZip(newzip);
+//            Log.d("T", "locsetto:" + Integer.toString(newzip));
+//            Intent intent = new Intent(this, Menu.class);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            startActivity(intent);
+//            Toast.makeText(this, "NEW AREA " + Integer.toString(newzip), Toast.LENGTH_LONG).show();
+//        } else {
+//            super.onMessageReceived( messageEvent );
+//        }
+
     }
+
 }
